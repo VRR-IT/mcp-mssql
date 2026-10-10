@@ -33,6 +33,8 @@ export MCPMSSQL_CONNECTION_STRING="Server=127.0.0.1;User ID=sa;Password=<YourStr
 npx -y @modelcontextprotocol/inspector@latest dotnet run --project src/Alyio.McpMssql -f net10.0
 ```
 
+The Inspector connects in the legacy [protocol era](https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/protocol-eras) by default, where [long-running calls](#tools-and-resources) never run as tasks. Set **Protocol Era** to `auto` or `modern` in Server Settings, or pass `--protocol-era <auto|modern>` to the CLI or TUI.
+
 ## Configuration
 
 A **profile** is one SQL Server connection: a connection string, the row and timeout caps that apply to it, and whether writes are allowed. A profile named `default` always exists; every tool takes an optional `profile` to reach another, and `list_profiles` reports what is configured.
@@ -163,6 +165,10 @@ Catalog browsing is left to `run_query` over `sys.objects`, `sys.schemas` and `s
 
 Plans and snapshots are written to disk, under `~/.cache/mcp-mssql/plans/` and `~/.cache/mcp-mssql/snapshots/` (`%USERPROFILE%\.cache\mcp-mssql\` on Windows). Expired files are swept the first time the server touches the store.
 
+**Long-running calls ([MCP Tasks](https://modelcontextprotocol.io/extensions/tasks/overview))**
+
+Snapshot queries (`run_query` with `snapshot=true`) and actual-plan analysis (`analyze_query` without `estimated=true`) run as tasks for clients that negotiate protocol `2026-07-28` and declare `io.modelcontextprotocol/tasks` on the request: the call returns a task handle at once and the client polls `tasks/get` (every 2 s suggested) for the usual result. Every other client, and every other call, gets the ordinary synchronous result. Tasks live in memory for an hour and end with the server process; `tasks/cancel` stops the running command.
+
 ## Security
 
 The query tools (`run_query`, `analyze_query`) are read-only (`SELECT` only) and use parameterized `@paramName` binding. Use environment variables, config file or user-secrets for connection strings—never commit secrets.
@@ -278,12 +284,6 @@ CI does the same, iterating over `TARGET_FRAMEWORKS` sequentially.
 ## Why this instead of Data API Builder?
 
 Data API Builder (DAB) is a full REST/GraphQL API with CRUD and auth. This project is a small, read-only MCP server for agents: stdio, parameterized SELECT only, minimal surface. Choose this for agent workflows and low operational overhead; choose DAB for CRUD, REST/GraphQL, and rich policies.
-
-## Roadmap
-
-**MCP Tasks extension ([SEP-2663](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2663)).** Snapshot queries and execution-plan analysis run under long timeouts (120 s and 300 s by default), which is the shape the [Tasks extension](https://modelcontextprotocol.io/extensions/tasks/overview) exists for: the server returns a durable task handle instead of blocking, and the client polls `tasks/get` until the work reaches a terminal state.
-
-The fit is good; adoption is the blocker. Tasks is an opt-in extension (`io.modelcontextprotocol/tasks`) that a server may only use when the client declares support in its per-request capabilities, and no client currently lists it in the [extension support matrix](https://modelcontextprotocol.io/extensions/client-matrix). Deferred until clients ship support.
 
 ## Schema compatibility
 

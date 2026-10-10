@@ -15,9 +15,20 @@ namespace Alyio.McpMssql.Features;
 public static class QueryTools
 {
     /// <summary>
+    /// The advertised name of the query tool, pinned so the task execution-mode
+    /// selector cannot drift from the wire contract.
+    /// </summary>
+    internal const string RunQueryToolName = "run_query";
+
+    /// <summary>
+    /// The advertised name of the plan analysis tool, pinned for the same reason.
+    /// </summary>
+    internal const string AnalyzeQueryToolName = "analyze_query";
+
+    /// <summary>
     /// Execute read-only T-SQL SELECT.
     /// </summary>
-    [McpServerTool(UseStructuredContent = true, ReadOnly = true, OpenWorld = false)]
+    [McpServerTool(Name = RunQueryToolName, UseStructuredContent = true, ReadOnly = true, OpenWorld = false)]
     [Description(
         "[MSSQL] Execute read-only T-SQL SELECT. " +
         "Prefer analyze_query when tuning plans.")]
@@ -45,7 +56,7 @@ public static class QueryTools
     /// <summary>
     /// Analyze a read-only T-SQL SELECT execution plan.
     /// </summary>
-    [McpServerTool(UseStructuredContent = true, ReadOnly = true, OpenWorld = false)]
+    [McpServerTool(Name = AnalyzeQueryToolName, UseStructuredContent = true, ReadOnly = true, OpenWorld = false)]
     [Description(
         "[MSSQL] Analyze execution plan for a read-only SELECT.")]
     public static Task<AnalyzeResult> AnalyzeQueryAsync(

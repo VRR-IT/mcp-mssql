@@ -53,6 +53,7 @@ public sealed class McpServerFixture : IAsyncLifetime
         services.AddMcpServer()
             .WithStreamServerTransport(serverInput, serverOutput)
             .WithMcpMssqlTools(McpJsonDefaults.Options)
+            .WithMcpMssqlTasks()
             .WithResourcesFromAssembly(typeof(McpExecutor).Assembly);
 
         _serviceProvider = services.BuildServiceProvider();

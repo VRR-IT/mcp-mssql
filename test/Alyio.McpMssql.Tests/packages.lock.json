@@ -576,7 +576,8 @@
           "Microsoft.Extensions.Hosting": "[10.0.12, )",
           "Microsoft.Extensions.Options.DataAnnotations": "[10.0.12, )",
           "Microsoft.SqlServer.TransactSql.ScriptDom": "[180.107.0, )",
-          "ModelContextProtocol": "[2.2.0, )"
+          "ModelContextProtocol": "[2.2.0, )",
+          "ModelContextProtocol.Extensions.Tasks": "[2.2.0, )"
         }
       },
       "CsvHelper": {
@@ -658,6 +659,15 @@
           "Microsoft.Extensions.Caching.Abstractions": "10.0.10",
           "Microsoft.Extensions.Hosting.Abstractions": "10.0.10",
           "ModelContextProtocol.Core": "[2.2.0]"
+        }
+      },
+      "ModelContextProtocol.Extensions.Tasks": {
+        "type": "CentralTransitive",
+        "requested": "[2.2.0, )",
+        "resolved": "2.2.0",
+        "contentHash": "cIGGEIL/KVbPBxflSF6TRKmjNTGk668e8x/R+Jx9l8VPHH70BisCmjdtHdkDHbbBr9gGMbjBjJdiNMJecweCGw==",
+        "dependencies": {
+          "ModelContextProtocol": "[2.2.0]"
         }
       }
     },
@@ -1282,7 +1292,8 @@
           "Microsoft.Extensions.Hosting": "[10.0.12, )",
           "Microsoft.Extensions.Options.DataAnnotations": "[10.0.12, )",
           "Microsoft.SqlServer.TransactSql.ScriptDom": "[180.107.0, )",
-          "ModelContextProtocol": "[2.2.0, )"
+          "ModelContextProtocol": "[2.2.0, )",
+          "ModelContextProtocol.Extensions.Tasks": "[2.2.0, )"
         }
       },
       "CsvHelper": {
@@ -1364,6 +1375,15 @@
           "Microsoft.Extensions.Caching.Abstractions": "10.0.10",
           "Microsoft.Extensions.Hosting.Abstractions": "10.0.10",
           "ModelContextProtocol.Core": "[2.2.0]"
+        }
+      },
+      "ModelContextProtocol.Extensions.Tasks": {
+        "type": "CentralTransitive",
+        "requested": "[2.2.0, )",
+        "resolved": "2.2.0",
+        "contentHash": "cIGGEIL/KVbPBxflSF6TRKmjNTGk668e8x/R+Jx9l8VPHH70BisCmjdtHdkDHbbBr9gGMbjBjJdiNMJecweCGw==",
+        "dependencies": {
+          "ModelContextProtocol": "[2.2.0]"
         }
       }
     }

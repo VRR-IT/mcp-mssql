@@ -64,6 +64,7 @@ builder.Services
     })
     .WithStdioServerTransport()
     .WithMcpMssqlTools(McpJsonDefaults.Options)
+    .WithMcpMssqlTasks()
     .WithResourcesFromAssembly();
 
 await builder.Build().RunAsync();
