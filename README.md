@@ -33,7 +33,11 @@ export MCPMSSQL_CONNECTION_STRING="Server=127.0.0.1;User ID=sa;Password=<YourStr
 npx -y @modelcontextprotocol/inspector@latest dotnet run --project src/Alyio.McpMssql -f net10.0
 ```
 
-The Inspector connects in the legacy [protocol era](https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/protocol-eras) by default, where [long-running calls](#tools-and-resources) never run as tasks. Set **Protocol Era** to `auto` or `modern` in Server Settings, or pass `--protocol-era <auto|modern>` to the CLI or TUI.
+The Inspector connects in the legacy [protocol era](https://modelcontextprotocol.io/docs/2026-07-28/tools/inspector/protocol-eras) by default, where [long-running calls](#tools-and-resources) never run as tasks. Set **Protocol Era** to `auto` or `modern` in Server Settings, or pass `--protocol-era <auto|modern>` on the command line. For example:
+
+```bash
+npx -y @modelcontextprotocol/inspector@latest --protocol-era auto dotnet run --project src/Alyio.McpMssql -f net10.0
+```
 
 ## Configuration
 
