@@ -215,6 +215,8 @@ Replace the connection string with your own; ensure `dotnet` is on your PATH. Th
 }
 ```
 
+Claude Code (observed on 2.1.296) falls back to `initialize` when the server is slow to answer its `server/discover` probe, as on a cold `dnx` start; the session then runs on protocol `2025-11-25` and [long-running calls](#tools-and-resources) stay synchronous. The installed global tool (`"command": "mcp-mssql"`, no `args`) starts fast enough to connect on `2026-07-28`.
+
 <details>
 <summary>Codex, Open Code and GitHub Copilot</summary>
 
