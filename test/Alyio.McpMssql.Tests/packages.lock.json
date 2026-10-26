@@ -506,11 +506,6 @@
         "resolved": "6.0.1",
         "contentHash": "IQ4NXP/B3Ayzvw0rDQzVTYsCKyy0Jp9KI6aYcK7UnGVlR9+Awz++TIPCQtPYfLJfOpm8ajowMR09V7quD3sEHw=="
       },
-      "System.Security.Cryptography.Pkcs": {
-        "type": "Transitive",
-        "resolved": "9.0.18",
-        "contentHash": "NKMKhUdLGNZryY9GXXTF5dXyP6S37EYXhiA2JYvwshJbd4DRq07IOS9it8Opi9atadvv5rlNkD76Mio+5Oo2aQ=="
-      },
       "System.Security.Cryptography.ProtectedData": {
         "type": "Transitive",
         "resolved": "9.0.18",
@@ -588,7 +583,8 @@
           "Microsoft.Extensions.Options.DataAnnotations": "[10.0.12, )",
           "Microsoft.SqlServer.TransactSql.ScriptDom": "[180.117.0, )",
           "ModelContextProtocol": "[2.2.0, )",
-          "ModelContextProtocol.Extensions.Tasks": "[2.2.0, )"
+          "ModelContextProtocol.Extensions.Tasks": "[2.2.0, )",
+          "System.Security.Cryptography.Pkcs": "[10.0.14, )"
         }
       },
       "CsvHelper": {
@@ -681,6 +677,12 @@
         "dependencies": {
           "ModelContextProtocol": "[2.2.0]"
         }
+      },
+      "System.Security.Cryptography.Pkcs": {
+        "type": "CentralTransitive",
+        "requested": "[10.0.14, )",
+        "resolved": "10.0.14",
+        "contentHash": "Wz+IgL2xpg8KJ4i2VWj6uz1PmZNu4Q0Ljlwd73P9Vze5NcOBtctLii3itV0PB2MpOqwqDEGfB6RCdv94A4E5yQ=="
       }
     }
   }

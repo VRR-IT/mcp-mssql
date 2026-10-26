@@ -27,6 +27,8 @@
     <PackageReference Include="Microsoft.SqlServer.TransactSql.ScriptDom" />
     <PackageReference Include="ModelContextProtocol" />
     <PackageReference Include="ModelContextProtocol.Extensions.Tasks" />
+    <!-- Pin past GHSA-846f-f764-76mx; Microsoft.Data.SqlClient pulls in a vulnerable version. -->
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
   </ItemGroup>
 
   <ItemGroup>
