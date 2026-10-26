@@ -8,7 +8,7 @@
 
 A read-only-by-default [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for Microsoft SQL Server that provides schema discovery, select-only **queries**, execution-plan **analysis**, opt-in **writes**, and profile-based access to **multiple servers** from a single toolset deployment.
 
-**Requirements:** .NET 8.0 or later runtime (the tool targets `net8.0` and `net10.0`), SQL Server, and a connection string.
+**Requirements:** .NET 10.0 or later runtime, SQL Server, and a connection string.
 
 ## Quick start
 
@@ -277,15 +277,6 @@ dotnet user-secrets set "MCPMSSQL_CONNECTION_STRING" \
   "Server=localhost,1433;User ID=sa;Password=...;TrustServerCertificate=True;Encrypt=True;Initial Catalog=McpMssqlTest;" \
   --project test/Alyio.McpMssql.Tests
 ```
-
-**One framework at a time.** The single `McpMssqlTest` database is shared by every test, and the fixtures drop and recreate it on initialization. Within one test process this is safe — the `SqlServer` collection disables parallelization. Across processes it is not: the test project targets both `net8.0` and `net10.0`, and `dotnet test` runs the two framework modules in parallel, so they race on that one database. There is no cross-process locking, so run a single framework at a time:
-
-```bash
-dotnet test --framework net8.0
-dotnet test --framework net10.0
-```
-
-CI does the same, iterating over `TARGET_FRAMEWORKS` sequentially.
 
 ## Why this instead of Data API Builder?
 
